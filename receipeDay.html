@@ -35,9 +35,9 @@ async function onload()
   //let meal_Name=document.getElementById("searchMeal").value
   let res= await fetch(`https:www.themealdb.com/api/json/v1/1/random.php`);
   let data=await res.json()
- // console.log(data)
- 
-  let imgSrc=document.getElementById("poster")
+  .then(function(response){
+        if(response.status==200){
+            let imgSrc=document.getElementById("poster")
   imgSrc.src=data.meals[0].strMealThumb
 
   let name=document.getElementById("strMeal")
@@ -48,6 +48,9 @@ async function onload()
 
   let area=document.getElementById("area")
   area.innerHTML="Area :"+data.meals[0].strArea
+        }
+    })
+ 
 }       
 onload()    
        
