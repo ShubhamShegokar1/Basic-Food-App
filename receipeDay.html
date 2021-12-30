@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipe of Day</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class=" top" style="margin-top: 2%; margin-bottom: 2%;">
+        <h1 >Meal of the day</h1>
+        <div class="receipe_of_day">
+         <img  id="poster"  >
+         <p id="strMeal" ></p>
+          <p id="categoryNew"></p>
+         <p id="area"></p>
+      </div>
+    </div>
+
+</body>
+</html>
+<script type="module">
+    import navbar from "/navbar.js";
+    let div = document.createElement("div")
+     div.innerHTML=navbar();
+     document.body.prepend(div)
+</script>
+
+ <script>
+async function onload()
+   {
+  //let meal_Name=document.getElementById("searchMeal").value
+  let res= await fetch(`https:www.themealdb.com/api/json/v1/1/random.php`);
+  let data=await res.json()
+ // console.log(data)
+ 
+  let imgSrc=document.getElementById("poster")
+  imgSrc.src=data.meals[0].strMealThumb
+
+  let name=document.getElementById("strMeal")
+  name.innerHTML="Name :"+data.meals[0].strMeal
+
+  let category=document.getElementById("categoryNew")
+  category.innerHTML="Catergory :"+data.meals[0].strCategory
+
+  let area=document.getElementById("area")
+  area.innerHTML="Area :"+data.meals[0].strArea
+}       
+onload()    
+       
+   </script>

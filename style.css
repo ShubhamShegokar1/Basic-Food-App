@@ -1,0 +1,136 @@
+*
+{
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+#navbar
+{
+  background-color: #2BB673;
+}
+
+.navbar
+{
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(8,1fr);    
+  margin: auto;     
+}
+
+li
+{
+  color: white;
+  font-weight: 600;
+  list-style-type: none;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+li:hover
+{
+    background-color: #229760;
+    border-radius: 3px;
+    cursor: pointer;
+    color: yellow;
+}
+
+
+@media screen and (min-width:801px)  and (max-width:1400px){
+   .navbar
+  {
+   grid-template-columns: repeat(3,1fr);    
+   margin: auto;     
+   }
+}
+@media screen  and (max-width:800px){
+   .navbar
+  {
+   grid-template-columns: repeat(1,1fr);    
+   margin: auto;     
+   }
+}
+
+.slideshow
+{
+  filter: drop-shadow( 4px 4px 4px #229760);
+}
+
+.slideshow:hover
+{
+    filter: drop-shadow( 4px 4px 4px yellow);
+    cursor: pointer;
+}
+
+h1
+{
+  animation: blinkingText 2s infinite;
+ width: 80%;
+ margin: auto;
+ margin-bottom: 2%;
+ margin-top: 2%;
+ border-radius: 20px;
+}
+
+@keyframes blinkingText{
+0%		{ background-color: #6f9971;}
+25%		{ color: #1056c0;}
+50%		{ color: #ef0a1a;}
+75%		{ background-color: #6781a5;}
+100%	{ color: #04a1d5;}
+}
+.receipe_of_day
+{
+  display: grid;
+  width: 80%;
+  margin: auto;
+}
+
+@media screen and (min-width:1001px)
+{
+ .receipe_of_day
+ {
+   grid-template-columns: repeat(4,1fr);
+ }
+ .receipe_of_day p
+{
+  margin-top: 30%;
+}
+.receipe_of_day img
+{
+ width: auto; height: 200px; margin-top: 1%; 
+ border: #338662 3px solid; border-radius: 10px;
+ margin: auto;
+}
+
+}
+@media screen and (max-width:1000px){
+ .receipe_of_day
+ {
+   grid-template-columns: repeat(1,1fr);
+   
+ }
+ .receipe_of_day img
+ {
+    height: 300px;
+   
+ }
+ .receipe_of_day p
+ {
+   margin-top: 2%;
+   
+ }
+ .receipe_of_day img
+{
+ width: auto; height: 200px; margin-top: 1%; 
+ border: #338662 3px solid; border-radius: 10px;
+ margin: auto;
+}
+}
+
+
+.top p
+     {
+      font-size: 20px; 
+      color: grey;
+     }

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food wala wali dish</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+    <link rel="stylesheet" href="style.css">
+    <script src="display.js"></script>
+
+    <style>
+      
+      button
+      {
+        font-size: 20px;
+        background-color: tomato;
+        border-radius: 5px;
+        color: white;
+      }
+
+      button:hover
+      {
+        cursor: pointer;
+        background-color: rgb(216, 50, 21);;
+      }
+     
+
+     
+      #category
+      {
+        width: 80%;
+        margin: auto;
+        display: grid;
+        margin-top: 2%;
+        margin-bottom: 2%;
+      }
+
+      @media screen and (min-width:1001px)
+      {
+        #category
+        {
+          grid-template-columns: repeat(3,1fr);
+         
+          gap: 30px;
+        }
+      }
+      @media screen and(max-width:1000px )
+      {
+        #category
+        {
+          grid-template-columns: repeat(2,1fr);
+          gap: 30px;
+        }
+      }
+
+      
+      #category  img
+      {
+        filter: drop-shadow( 4px 4px 4px yellow);
+        height: 200px;
+        width: 200px;
+        margin: auto;
+      }
+
+      #category div
+      {
+         border : 5px solid  #a7e2c8;
+         border-radius: 12px;
+      }
+
+      #category div:hover
+      {
+        border : 5px solid  #338662;
+        cursor: pointer;
+      }
+
+      .category p
+      {
+        color: rgb(109, 107, 106);
+        font-size: 25px;
+      }
+   
+
+      .newclass
+      {
+        display: grid;
+        
+      }
+   
+
+   
+    </style>
+</head>
+<body>
+  <h1>Latest Receipes</h1>
+</body>
+</html>
+ 
+ 
+
+<script type="module">
+    import navbar from "/navbar.js";
+    let div = document.createElement("div")
+     div.innerHTML=navbar();
+     document.body.prepend(div)
+   </script>
+
+
+<script>
+    
+async function deafault()
+{
+  let i=0;
+  let myDiv =document.createElement("div")
+  myDiv.id="category";
+  document.body.appendChild( myDiv)
+  let res= await fetch("https:www.themealdb.com/api/json/v1/1/categories.php");
+  let data=await res.json()
+  
+  
+  while (i<9)
+  {
+    let childDiv = document.createElement("div")
+    myDiv.appendChild(childDiv)
+    let poster=document.createElement("img")
+    let name=document.createElement("p")
+    name.innerHTML=data.categories[i].strCategory
+    poster.src=data.categories[i].strCategoryThumb
+    childDiv.appendChild(poster)
+    childDiv.appendChild(name)
+    i++;
+  }
+}
+
+deafault()
+</script>

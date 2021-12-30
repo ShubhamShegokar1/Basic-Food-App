@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+    <link rel="stylesheet" href="style.css">
+    <script src="display.js"></script>
+
+    <title>Food Wala</title>
+    
+    <style>
+         .search input
+      {
+        width: 100%;
+        height: 35px;
+      }
+
+      .search #main 
+      {
+        background-color: white;
+        border : 1px solid gray
+      }
+
+      #main p
+      {
+        font-size: 20px;
+      }
+
+      #main p:hover
+      {
+        background-color: rgb(199, 194, 194);
+        cursor: pointer;
+        
+      }
+      .search
+      {    
+        width: 80%;
+        margin: auto;
+        margin-top: 2%;
+      }
+      input
+      {
+        background-color: #9bd4ba;
+        font-size: 20px;
+        border: 2px solid #229760; 
+        border-radius: 5px;
+        color: rgb(104, 101, 101);
+      }
+
+       .newclass
+       {
+         display: grid;
+         grid-template-columns: repeat(2,1fr);    
+         margin-bottom: 4%;
+         gap: 2%;
+
+       }    
+
+      p
+      {
+        font-size: 20px;
+        color: gray;
+      }
+
+       .navigate
+       {
+         display: flex;
+          padding-top: 2%;
+         margin-bottom: 2%;
+         color: white;
+         font-size: 28px;
+         width: 80%;
+         
+         margin: auto;
+         gap: 20px;
+       }
+
+
+
+       .navigate div
+       {
+         flex-grow:  1;
+         background-color: #229760;
+         border-radius: 20px;
+       }
+
+       .navigate div:hover
+       {
+         cursor: pointer;
+         background-color: #0f5a36;
+       }
+
+    </style>
+</head>
+<body>
+
+  <div class="navigate">
+    <div onclick="go()">Latest Receipes</div>
+    <div onclick="go1()">Receipe of the day</div>
+   </div>
+   
+<div class=" search">
+  <div id="main">
+    <input type="text" placeholder="Search Meal" id="searchMeal"  oninput="debounce(main,500)"/> 
+   </div>
+</div>
+
+
+
+</body>
+</html>
+
+<script>
+
+function go()
+{
+  window.location="latest.html"
+}
+function go1()
+{
+  window.location="receipeDay.html"
+}
+
+var timerId;   
+var data;
+async  function myfun()
+{
+  let meal_Name=document.getElementById("searchMeal").value
+  let res= await fetch(`https:www.themealdb.com/api/json/v1/1/search.php?s=${meal_Name}`);
+   data=await res.json()
+  let main=document.getElementById("main")
+  if(meal_Name.length===0)
+  {
+      let mynode =document.getElementById("main")
+      while (mynode.childNodes.length>2) 
+      {
+       mynode.removeChild(mynode.lastChild);
+      } 
+  }
+
+  else
+  {
+    if(data.meals.length<6)
+      {
+       data.meals.forEach(({strMeal})=> 
+           {
+              let p =document.createElement("p");
+              p.innerText=strMeal;
+              main.append(p) 
+              p.addEventListener("click", function() {display(strMeal)})
+           });
+     }
+   else
+  {
+   for(let i=0;i<6;i++)
+     {
+           let p =document.createElement("p");
+              p.innerText=data.meals[i].strMeal;
+              main.append(p) 
+              p.addEventListener("click", function() {display(data.meals[i].strMeal)})
+              break;
+      }
+   }
+
+  }
+ 
+}
+
+function debounce(func, delay)
+        {
+            if(timerId)
+            {
+                clearTimeout(timerId)
+            }
+            timerId=setTimeout(() => 
+            {
+              myfun();
+            }, delay);
+        }
+
+git
+</script>
+
+<script type="module">
+ import navbar from "/navbar.js";
+ let div = document.createElement("div")
+  div.innerHTML=navbar();
+  document.body.prepend(div)
+</script>
