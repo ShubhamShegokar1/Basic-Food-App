@@ -117,7 +117,10 @@ async function defaultt()
   document.body.appendChild( myDiv)
   let res= await fetch("https:www.themealdb.com/api/json/v1/1/categories.php");
   let data=await res.json()
-  
+  .then(function(response)
+  {
+        if(response.status==200)
+        {
   
   while (i<9)
   {
@@ -131,7 +134,8 @@ async function defaultt()
     childDiv.appendChild(name)
     i++;
   }
-}
-
+ }
+    })
+  }
 defaultt()
 </script>
